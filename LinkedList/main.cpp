@@ -6,10 +6,10 @@ int main(){
 
     l.append(1);
     l.append(5);
-     l.append(8);
-    // // l.push_front(-5);
+    l.append(8);
+    l.push_front(-5);
 
-    // l.print_list();
+    l.print_list();
 
     return 0;
 }

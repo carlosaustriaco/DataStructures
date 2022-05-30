@@ -2,7 +2,6 @@
 #define LINKED_LIST_HPP
 #include "Node.hpp"
 #include <iostream>
-#include <cstddef>
 
 template<class T>
 class List{
@@ -20,8 +19,7 @@ class List{
 
 // The constructor initializing the head variable
 template <class T>
-List<T>::List(){
-        
+List<T>::List(){       
     head    = new Node<T>*;
     length  = 0;
 }
@@ -30,11 +28,9 @@ List<T>::List(){
 // Returns true if the insertion was a success and false otherwise
 template <class T>
 bool List<T>::push_front(T data){
-    try{  
-        
+    try{          
         Node<T>* n = new Node<T>;
-        
-        
+               
         n->data = data;
         n->next = *head;
         head   = &n;
