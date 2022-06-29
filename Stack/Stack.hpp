@@ -58,11 +58,13 @@ bool Stack<T>::Pop()
     try
     {
         Node<T>* n = (*head)->next;
-        (*head).Free;
+        delete (*head);
+        head = &n;
+        
     }
     catch(...)
     {
-        std::cerr << e.what() << '\n';
+        return false;
     }
     
 }
