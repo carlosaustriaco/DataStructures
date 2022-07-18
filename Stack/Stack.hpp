@@ -2,6 +2,7 @@
 #define STACK_HPP
 
 #include "Node.hpp"
+#include <iostream>
 
 template<class T>
 class Stack
@@ -14,6 +15,7 @@ class Stack
 
         bool Push(T data);
         bool Pop();
+        void PrintStack();
 };
 
 // The constructor initializing the head variable
@@ -29,18 +31,18 @@ template<class T>
 bool Stack<T>::Push(T data){
     try
     {
-        Node<T>* n = new Node<T>;
-        n->data = data;
-        
+        Node<T>* n  = new Node<T>();
+        n->data     = data;
+
         if (length == 0)
         {
-            *head = n;
             n->next = NULL;
+            *head   = n;
         }
         else
         {
             n->next = *head;
-            head    = &n;
+            *head    = n;
         }
 
         length++;
@@ -67,6 +69,18 @@ bool Stack<T>::Pop()
         return false;
     }
     
+}
+
+template<class T>
+void Stack<T>::PrintStack(){
+    if (length != 0){
+        Node<T> *elem = *head;
+
+        while(elem != NULL){
+            std::cout << elem->data << "\t";
+            elem = elem->next;
+        }
+    }
 }
 
 #endif
