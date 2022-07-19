@@ -29,26 +29,87 @@ Queue<T>::Queue()
 {
     length  = 0;
     head    = new Node<T>*;
+    front   = NULL;
+    rear    = NULL;
 }
 
+// The method to enqueue the element of the queue
 template<class T>
 void Queue<T>::Enqueue(T data)
 {
     Node<T>* n = new Node<T>;
+    Node<T>* last;
     n->data    = data;
+    n->next    = NULL;
 
-    if (length == 0)
+    if (this->length == 0)
     {
-        n->next = NULL;
+        *head = n;
+        front = data;
     }
-    else{
-        n->next = *head;
+    else
+    {
+        last = *head;
+
+        // itterating over the queue to find the last element
+        while(last->next != NULL)
+        {
+            last = last->next;            
+        }
+
+        last->next = n;        
     }
 
-    *head = n;
+    rear  = data;  
     length++;
 }
 
+// The method to dequeue the element of the queue
+template<class T>
+T Queue<T>::Dequeue()
+{
+    if (length > 0)
+    {
+        Node<T>* n = *head;
+        T item     = n->data;
+        *head      = n->next;
+        front      = n->next->data; 
+        free(n);
+        length--;
+        return item;
+    }
+    else
+    {
+        return NULL;
+    }
+}
 
+// Method to get the front element of the queue
+template<class T>
+T Queue<T>::Front()
+{
+    return front;
+}
+
+// Method to get the rear element of the queue
+template<class T>
+T Queue<T>::Rear()
+{
+    return rear;
+}
+
+// Method to check if the queue is empty
+template<class T>
+bool Queue<T>::IsEmpty()
+{
+    return (length == 0);
+}
+
+// Method to get the size of the queue
+template<class T>
+unsigned int Queue<T>::Size()
+{
+    return length;
+}
 
 #endif
