@@ -1,5 +1,4 @@
 #include "Queue.hpp"
-#include <iostream>
 
 int main()
 {
